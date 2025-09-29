@@ -2,37 +2,37 @@ import hashlib
 import time    
 import json 
 
-class Block:  # Define the Block class representing a single block in the blockchain
+class Block:  
     def __init__(self, index, data, previous_hash):
-        # index: Position of the block in the blockchain
+        # Position of the block in the blockchain
         self.index = index
-        # timestamp: Time when the block is created (in seconds since epoch)
+        # Time when the block is created (in seconds since epoch)
         self.timestamp = time.time()
-        # data: The actual data or transactions stored in the block
+        # The actual data or transactions stored in the block
         self.data = data
-        # previous_hash: Hash of the previous block in the chain
+        # Hash of the previous block in the chain
         self.previous_hash = previous_hash
-        # nonce: Number used for mining (proof-of-work)
+        # Number used for mining 
         self.nonce = 0
-        # hash: The hash of the current block, calculated using its contents
+        # The hash of the current block, calculated using its contents
         self.hash = self.calculate_hash()
     
     def calculate_hash(self):
-        """Calculate the hash of the block"""
+        
         # Serialize the block's contents into a JSON string
         block_string = json.dumps({
-            "index": self.index,           # Include block index
-            "timestamp": self.timestamp,   # Include timestamp
-            "data": self.data,             # Include block data
-            "previous_hash": self.previous_hash, # Include previous block's hash
-            "nonce": self.nonce            # Include nonce value
+            "index": self.index,           
+            "timestamp": self.timestamp,   
+            "data": self.data,            
+            "previous_hash": self.previous_hash, 
+            "nonce": self.nonce         
         }, sort_keys=True)
-        # Calculate SHA-256 hash of the serialized string and return its hexadecimal representation
+        # Calculate SHA-256 hash, return its hexadecimal representation
         return hashlib.sha256(block_string.encode()).hexdigest()
     
     def mine_block(self, difficulty):
-        """Simple proof-of-work mining"""
-        # target: String of '0's that the hash must start with, based on difficulty
+    
+        # String of '0's that the hash must start with, based on difficulty
         target = "0" * difficulty
         # Loop until the block's hash starts with the required number of '0's
         while self.hash[:difficulty] != target:

@@ -22,7 +22,7 @@ class Blockchain:
         return self.chain[-1]
     
     def add_block(self, data):
-        """Add a new block to the chain"""
+    
         previous_block = self.get_latest_block()
         new_block = Block(previous_block.index + 1, data, previous_block.hash)
         
@@ -34,7 +34,7 @@ class Blockchain:
         print(f"New block added: {new_block}")
     
     def is_chain_valid(self):
-        """Check if the blockchain is valid"""
+        
         for i in range(1, len(self.chain)):
             current_block = self.chain[i]
             previous_block = self.chain[i-1]
@@ -52,7 +52,7 @@ class Blockchain:
         return True
     
     def get_chain_info(self):
-        """Display information about the blockchain"""
+        
         print(f"\n=== Blockchain Info ===")
         print(f"Number of blocks: {len(self.chain)}")
         print(f"Mining difficulty: {self.difficulty}")

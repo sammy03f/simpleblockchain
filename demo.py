@@ -18,10 +18,9 @@ def main():
     
     blockchain.add_block("Charlie sends 3 coins to David")
     
-    # Display the blockchain
     blockchain.display_chain()
     
-    # Show blockchain info
+
     blockchain.get_chain_info()
     
     # Demonstrate validation
